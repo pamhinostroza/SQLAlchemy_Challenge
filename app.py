@@ -28,8 +28,8 @@ def homepage():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/precipition<br/>"
-        f"/api/v1.0/station <br/>"
+        f"/api/v1.0/precipitation<br/>"
+        f"/api/v1.0/stations <br/>"
         f"/api/v1.0/tobs </br>"
         f"/api/v1.0/<start></br>"
         f"/api/v1.0/<start>/<end></br>"
@@ -92,7 +92,7 @@ def start_dates(start):
 def start_end_dates (start, end):
     session = Session(engine)
     star_end_result = session.query(func.min(Measurement.tobs),func.avg(Measurement.tobs),func.max(Measurement.tobs)).\
-    filter(Measurement.date > start).filter(Measurment.date < end).all()
+    filter(Measurement.date > start).filter(Measurement.date < end).all()
     session.close()
     tobs_start_end = list(np.ravel(star_end_result))
     return jsonify(tobs_start_end)
